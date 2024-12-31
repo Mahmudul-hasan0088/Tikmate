@@ -132,7 +132,7 @@ export default function Hero() {
   }
 
   return (
-    <div className="relative bg-gradient-to-b from-blue-600 to-blue-800 text-white py-16 sm:py-24 lg:py-32 overflow-hidden">
+    <div className="relative overflow-hidden bg-gradient-to-b from-blue-600 to-blue-800 py-16 text-white sm:py-24 lg:py-32">
       <div className="absolute inset-0 opacity-10">
         <div
           className="absolute inset-0"
@@ -142,14 +142,14 @@ export default function Hero() {
           }}
         />
       </div>
-      <div className="relative max-w-4xl mx-auto text-center px-4 space-y-8">
+      <div className="relative mx-auto max-w-4xl space-y-8 px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="space-y-4"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             TikTok Video Download
           </h2>
         </motion.div>
@@ -159,7 +159,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           onSubmit={handleSubmit}
-          className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto"
+          className="mx-auto flex max-w-2xl flex-col gap-3 sm:flex-row"
         >
           <div className="relative flex-1">
             <Input
@@ -167,7 +167,7 @@ export default function Hero() {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="Paste TikTok link here"
-              className="w-full pl-4 pr-20 py-7 rounded-xl text-black shadow-lg border-2 border-transparent focus:border-blue-400 transition-all bg-white"
+              className="w-full rounded-xl border-2 border-transparent bg-white py-7 pl-4 pr-20 text-black shadow-lg transition-all focus:border-blue-400"
               disabled={isLoading}
             />
             <Button
@@ -175,7 +175,7 @@ export default function Hero() {
               variant="secondary"
               onClick={handlePasteOrClear}
               disabled={isLoading}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-blue-600 hover:text-blue-700 font-medium rounded-lg p-2"
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg p-2 font-medium text-blue-600 hover:text-blue-700"
             >
               {url ? (
                 <>
@@ -192,16 +192,16 @@ export default function Hero() {
           <Button
             type="submit"
             disabled={isLoading}
-            className="bg-green-500 hover:bg-green-600 text-white px-8 py-7 rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl"
+            className="rounded-xl bg-green-500 px-8 py-7 text-white shadow-lg transition-all duration-200 hover:bg-green-600 hover:shadow-xl"
           >
             {isLoading ? (
               <>
-                <Loader2 className="h-5 w-5 animate-spin" />
+                <Loader2 className="size-5 animate-spin" />
                 Fetching...
               </>
             ) : (
               <>
-                <Download className="h-5 w-5" />
+                <Download className="size-5" />
                 Get Video
               </>
             )}
@@ -213,18 +213,18 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mt-8 bg-white rounded-xl overflow-hidden shadow-2xl"
+            className="mt-8 overflow-hidden rounded-xl bg-white shadow-2xl"
           >
-            <div className="p-2 bg-gray-50 flex items-start gap-3">
-              <div className="flex-shrink-0 size-20 overflow-hidden rounded-lg">
+            <div className="flex items-start gap-3 bg-gray-50 p-2">
+              <div className="size-20 shrink-0 overflow-hidden rounded-lg">
                 <img
                   src={videoDetails.cover}
                   alt="Video thumbnail"
                   className="object-cover"
                 />
               </div>
-              <div className="text-left flex-1">
-                <h3 className="text-xl font-semibold text-gray-900 mb-1 line-clamp-2">
+              <div className="flex-1 text-left">
+                <h3 className="mb-1 line-clamp-2 text-xl font-semibold text-gray-900">
                   {videoDetails.title}
                 </h3>
                 <div className="flex items-center gap-3 text-gray-600">
@@ -235,21 +235,21 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="p-6 space-y-3">
+            <div className="space-y-3 p-6">
               <Button
                 onClick={handleVideoDownload}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
+                className="w-full rounded-lg bg-blue-600 py-6 text-white shadow-md transition-all duration-200 hover:bg-blue-700 hover:shadow-lg"
               >
-                <Download className="h-5 w-5" />
+                <Download className="size-5" />
                 Download Without Watermark
               </Button>
 
               {videoDetails.music && (
                 <Button
                   onClick={handleMusicDownload}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white py-6 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
+                  className="w-full rounded-lg bg-purple-600 py-6 text-white shadow-md transition-all duration-200 hover:bg-purple-700 hover:shadow-lg"
                 >
-                  <Music className="h-5 w-5" />
+                  <Music className="size-5" />
                   Download Music
                 </Button>
               )}

@@ -1,8 +1,9 @@
-"use client";
-import Hero from '@/components/hero'
-import DownloadSection from '@/components/download-section'
-import Instructions from '@/components/features'
-import Faq from '@/components/faq'
+"use client"
+
+import DownloadSection from "@/components/download-section"
+import Faq from "@/components/faq"
+import Instructions from "@/components/features"
+import Hero from "@/components/hero"
 
 export default function Home() {
   return (
@@ -14,4 +15,3 @@ export default function Home() {
     </div>
   )
 }
-
