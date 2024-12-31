@@ -51,6 +51,10 @@ export default function Hero() {
     } else {
       try {
         const text = await navigator.clipboard.readText()
+        if (!text) {
+          toast.error("Clipboard is empty")
+          return
+        }
         setUrl(text)
       } catch (err) {
         toast.error("Failed to paste from clipboard")
@@ -58,28 +62,28 @@ export default function Hero() {
     }
   }
 
-  async function downloadTikTok(url: string) {
-    try {
-      const response = await fetch(
-        `https://tikwm.com/api/?url=${encodeURIComponent(url)}`
-      )
-      const data = await response.json()
+  // async function downloadTikTok(url: string) {
+  //   try {
+  //     const response = await fetch(
+  //       `https://tikwm.com/api/?url=${encodeURIComponent(url)}`
+  //     )
+  //     const data = await response.json()
 
-      if (data.code !== 0) {
-        throw new Error(data.msg || "Failed to fetch video")
-      }
+  //     if (data.code !== 0) {
+  //       throw new Error(data.msg || "Failed to fetch video")
+  //     }
 
-      return {
-        success: true,
-        data: data.data,
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : "Something went wrong",
-      }
-    }
-  }
+  //     return {
+  //       success: true,
+  //       data: data.data,
+  //     }
+  //   } catch (error) {
+  //     return {
+  //       success: false,
+  //       error: error instanceof Error ? error.message : "Something went wrong",
+  //     }
+  //   }
+  // }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -91,9 +95,21 @@ export default function Hero() {
     setIsLoading(true)
     setVideoDetails(null)
     try {
-      const result = await downloadTikTok(url)
+      const response = await fetch("/api/download", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch video details. Please try again.")
+      }
+
+      const result = await response.json()
       if (result.success && result.data) {
-        setVideoDetails(result.data)
+        setVideoDetails(result.data.data)
         toast.success("Video details fetched successfully!")
       } else {
         throw new Error(result.error || "Failed to fetch video details")
@@ -166,11 +182,13 @@ export default function Hero() {
               variant="secondary"
               onClick={handlePasteOrClear}
               disabled={isLoading}
-              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-2 font-medium text-blue-600 hover:text-blue-700"
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg py-2 px-2 font-medium text-blue-600 hover:text-blue-700 gap-1"
+              aria-label={url ? "Clear URL" : "Paste URL"}
             >
               {url ? (
                 <>
-                  <X className="size-4" /> Clear
+                  <X className="size-4" />
+                  Clear
                 </>
               ) : (
                 <>
@@ -199,6 +217,19 @@ export default function Hero() {
           </Button>
         </motion.form>
 
+        {!videoDetails && !isLoading && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mt-8 text-gray-400"
+          >
+            <p>
+              No video details to show. Paste a TikTok link and fetch details!
+            </p>
+          </motion.div>
+        )}
+
         {videoDetails && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -220,7 +251,7 @@ export default function Hero() {
                 </h3>
                 <div className="flex items-center gap-3 text-gray-600">
                   <span className="font-medium">
-                    {videoDetails.author.nickname}
+                    {videoDetails.author?.nickname}
                   </span>
                 </div>
               </div>
