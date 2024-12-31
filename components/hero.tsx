@@ -175,11 +175,11 @@ export default function Hero() {
               variant="secondary"
               onClick={handlePasteOrClear}
               disabled={isLoading}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-blue-600 hover:text-blue-700 font-medium rounded-lg"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-blue-600 hover:text-blue-700 font-medium rounded-lg p-2"
             >
               {url ? (
                 <>
-                  <X className="h-4 w-4" /> Clear
+                  <X className="size-4" /> Clear
                 </>
               ) : (
                 <>
