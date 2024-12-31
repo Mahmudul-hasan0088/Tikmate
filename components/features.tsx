@@ -76,7 +76,7 @@ export default function Instructions() {
           ))}
         </div>
 
-        <div className="mb-16 text-center">
+        {/* <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold">Why Choose Us</h2>
           <p className="mx-auto max-w-2xl text-gray-600">
             Experience the best TikTok video downloader with premium features at
@@ -101,7 +101,7 @@ export default function Instructions() {
               <p className="text-gray-600">{benefit.description}</p>
             </motion.div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   )

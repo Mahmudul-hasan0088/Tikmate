@@ -23,7 +23,7 @@ export default function Navbar() {
         <div className="flex h-16 justify-between">
           <div className="flex items-center">
             <Link href="/" className="flex shrink-0 items-center">
-              <h1 className="text-xl font-bold text-blue-600">SnapTik</h1>
+              <h1 className="text-xl font-bold text-blue-600">TikMate</h1>
             </Link>
           </div>
 
@@ -36,7 +36,7 @@ export default function Navbar() {
               >
                 Languages
               </Button>
-              <div className="invisible absolute right-0 mt-2 w-48 origin-top-right rounded-md border bg-white opacity-0 shadow-lg transition-all duration-300 group-hover:visible group-hover:opacity-100">
+              <div className="invisible absolute right-0 mt-2 w-48 origin-top-right rounded-md border bg-white opacity-0 shadow-lg transition-all duration-300 group-hover:visible group-hover:opacity-100 z-50">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}

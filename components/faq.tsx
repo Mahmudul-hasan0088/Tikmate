@@ -23,22 +23,22 @@ export default function Faq() {
 2. Find the video you want to download
 3. Click the Share button
 4. Select "Copy Link"
-5. Return to SnapTik and paste the link`,
+5. Return to TikMate and paste the link`,
     },
     {
-      question: "Is SnapTik safe to use?",
+      question: "Is TikMate safe to use?",
       answer:
-        "Yes, SnapTik is completely safe to use. We don't store any of your personal information or downloaded videos on our servers. The service works by processing the video URL you provide and delivering the video directly to your device.",
+        "Yes, TikMate is completely safe to use. We don't store any of your personal information or downloaded videos on our servers. The service works by processing the video URL you provide and delivering the video directly to your device.",
     },
     {
-      question: "Why choose SnapTik for TikTok downloads?",
+      question: "Why choose TikMate for TikTok downloads?",
       answer:
-        "SnapTik offers several advantages:\n- No watermark on downloaded videos\n- No registration required\n- Fast download speeds\n- Works on all devices\n- Completely free to use\n- No software installation needed",
+        "TikMate offers several advantages:\n- No watermark on downloaded videos\n- No registration required\n- Fast download speeds\n- Works on all devices\n- Completely free to use\n- No software installation needed",
     },
     {
       question: "Can I download TikTok videos on mobile devices?",
       answer:
-        "Yes, SnapTik works perfectly on mobile devices. You can download TikTok videos on any device with a web browser, including smartphones and tablets. The process is the same as on desktop.",
+        "Yes, TikMate works perfectly on mobile devices. You can download TikTok videos on any device with a web browser, including smartphones and tablets. The process is the same as on desktop.",
     },
     {
       question: "Are there any download limits?",
@@ -74,7 +74,11 @@ export default function Faq() {
         >
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="last:border-none"
+              >
                 <AccordionTrigger className="px-6 py-4 text-left hover:no-underline">
                   <span className="text-lg font-medium">{faq.question}</span>
                 </AccordionTrigger>
