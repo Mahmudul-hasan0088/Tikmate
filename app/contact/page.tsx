@@ -1,16 +1,9 @@
-'use client'
-
+"use client";
 import { useState } from 'react'
-import { Metadata } from 'next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from 'sonner'
-
-export const metadata: Metadata = {
-  title: 'Contact Us | SnapTik - TikTok Video Downloader',
-  description: 'Get in touch with the SnapTik team. We\'re here to help with any questions or concerns about our TikTok video downloader.',
-}
 
 export default function Contact() {
   const [isLoading, setIsLoading] = useState(false)
