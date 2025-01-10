@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import { Toaster } from "sonner"
-
+import { Toaster } from "react-hot-toast"
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
 

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Clipboard, Download, Loader2, Music, X } from "lucide-react"
-import { toast } from "sonner"
+import { toast } from "react-hot-toast"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -61,29 +61,6 @@ export default function Hero() {
       }
     }
   }
-
-  // async function downloadTikTok(url: string) {
-  //   try {
-  //     const response = await fetch(
-  //       `https://tikwm.com/api/?url=${encodeURIComponent(url)}`
-  //     )
-  //     const data = await response.json()
-
-  //     if (data.code !== 0) {
-  //       throw new Error(data.msg || "Failed to fetch video")
-  //     }
-
-  //     return {
-  //       success: true,
-  //       data: data.data,
-  //     }
-  //   } catch (error) {
-  //     return {
-  //       success: false,
-  //       error: error instanceof Error ? error.message : "Something went wrong",
-  //     }
-  //   }
-  // }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -216,19 +193,6 @@ export default function Hero() {
             )}
           </Button>
         </motion.form>
-
-        {!videoDetails && !isLoading && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mt-8 text-gray-400"
-          >
-            <p>
-              No video details to show. Paste a TikTok link and fetch details!
-            </p>
-          </motion.div>
-        )}
 
         {videoDetails && (
           <motion.div
